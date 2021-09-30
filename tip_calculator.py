@@ -22,16 +22,15 @@ tip = get_user_input(float, "What percentage will you be tipping? ")
 tip_percent = tip / 100
 
 # Calculate the total sales tax
-tax_amount = tax * bill
+tax_amount = round(tax * bill, 2)
 
 # Calculate the total tip amount
-tip_amount = tip_percent * bill
+tip_amount = round(tip_percent * bill, 2)
 
 total_bill = bill + tax_amount + tip_amount
 
 # Calculate the total per person
 total_each = total_bill / people
-total_each = "{:.2f}".format(total_each)
 
 # Output the results
 print('\n==========================================')
@@ -43,4 +42,4 @@ print(f"{tip}% Tip: \t\t${tip_amount}")
 print("==========================================")
 print(f"Total Bill: \t\t${total_bill}")
 print("==========================================")
-print(f"Cost per Person: \t${total_each}\n")
+print(f"Cost per Person: \t${round(total_each, 2)}\n")
