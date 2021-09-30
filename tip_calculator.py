@@ -2,7 +2,7 @@
 tax = 0.10
 
 
-def get_user_input(inst_type, msg):
+def get_user_input(inst_type, msg, err_msg):
   """Function to insure user input is in correct data type"""
   # Make sure user_input is not a number initially
   user_input = ""
@@ -11,21 +11,24 @@ def get_user_input(inst_type, msg):
     try:
       # If input can be converted to expected type, continue
       user_input = inst_type(input(msg))
-      # If input is equal to or less than 0, raise an exception
-      if user_input <= 0:
+      # If input is equal to or less than 0 (unless tip), raise an exception
+      if msg[:4] != "What" and user_input <= 0:
+        raise
+      # If input is a tip and less than 0, raise an exception
+      elif msg[:4] == "What" and user_input < 0:
         raise
     except:
       # If exception is raised, print message and reset user_input
-      print('Please use a positive number only')
+      print(f'Please use a positive {err_msg} only')
       user_input = ""
   # If all is well, return the user input
   return user_input
 
 
 # Declare input variables by passing them through the function
-bill = get_user_input(float, "How much is the bill? ")
-people = get_user_input(int, "How many people are splitting the bill? ")
-tip = get_user_input(float, "What percentage will you be tipping? ")
+bill = get_user_input(float, "How much is the bill? ", "float")
+people = get_user_input(int, "How many people are splitting the bill? ", "integer")
+tip = get_user_input(float, "What percentage will you be tipping? ", "integer or zero")
 
 # Calculate the total sales tax
 tax_amount = round(tax * bill, 2)
