@@ -2,6 +2,8 @@
 
 This is a Python command line program that calculates a total bill cost, including the cost per person, based on user input. The program has a static sales tax set at 10%, but prompts the user for the cost of the meal, the number of people splitting the bill, and the desired tip percentage.
 
+This program was written as part of my introduction to Python via JTC in the fall of 2021.
+
 ---
 
 ## Expected Inputs ##
